@@ -1,0 +1,110 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  label {
+    color: rgba(36, 62, 96, 0.61);
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 0.875px;
+    margin-bottom: 4px;
+    transition: color 0.4s;
+    line-height: 1;
+    &::after {
+      transition: opacity 0.2s;
+      margin-left: 0.2em;
+      opacity: 0;
+      color: rbg(22, 118, 244);
+    }
+  }
+  &[required] {
+    label {
+      color: rgba(255, 71, 58, 1);
+    }
+    div {
+      background-color: rgba(255, 71, 58, 0.21);
+    }
+  }
+  &:focus-within {
+    label {
+      color: #1676f4;
+    }
+    div {
+      background-color: white;
+      box-shadow: 0 0 0 1px hsla(214, 45%, 26%, 0.06), 0 1px 4px 1px hsla(214, 45%, 26%, 0.21);
+    }
+  }
+  div {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    width: inherit;
+    padding: 0px 7px;
+    border-radius: 5px;
+    background-color: rgba(36, 62, 96, 0.06);
+    transition: background-color 0.5s, box-shadow 0.5s;
+    cursor: text;
+    height: 36px;
+    font-weight: 500;
+    position: relative;
+    display: flex;
+    align-items: center;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background-color: rgb(255, 255, 255);
+      opacity: 0.5;
+      transform: scaleX(0);
+      transition: transform 0s, opacity 0s;
+      transform-origin: 0 0;
+      will-change: transform;
+    }
+    input {
+      background-color: rgba(0, 0, 0, 0);
+      border-bottom-color: rgba(36, 62, 96, 0.91);
+      margin: 0px;
+      border: 0px;
+      height: inherit;
+      border-radius: 0px;
+      padding: 0 4px;
+      align-self: baseline;
+      font-size: 1em;
+      box-shadow: none;
+      box-sizing: border-box;
+      outline: none !important;
+      flex: 1;
+      &::placeholder {
+        color: rgba(36, 62, 96, 0.61);
+        font-style: italic;
+        font-weight: 300;
+      }
+      &:disabled {
+        cursor: default;
+      }
+      &[value=""]+span[part="clear"] {
+        opacity: 0;
+      }
+    }
+    span {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      font-size: 17px;
+      text-align: center;
+      color: rgba(36, 62, 96, 0.41);
+      transition: 0.2s color;
+      opacity: 1;
+      &[part="clear"] {
+        cursor: pointer;
+        &:hover {
+          color: rgba(36, 62, 96, 0.71);
+        }
+      }
+    }
+  }
+}
