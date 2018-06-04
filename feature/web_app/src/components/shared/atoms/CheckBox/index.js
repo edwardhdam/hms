@@ -1,15 +1,15 @@
 import React from 'react'
-import { createLocal } from '../../utils/localnames'
+import CssModuleNameTag from 'utils/CssModuleNameTag'
 import styles from './styles.scss'
 
-const { localNames: local } = createLocal(styles)
+const cssModules = new CssModuleNameTag(styles)
 
 export default function CheckBox({
   children,
   ...restProps
 }) {
   return (
-    <div className={local('root')}>
+    <div className={cssModules`root`}>
       <label roles="wrapper">
         <input type="checkbox" tabIndex="-1" {...restProps} />
         <span roles="checkbox" />

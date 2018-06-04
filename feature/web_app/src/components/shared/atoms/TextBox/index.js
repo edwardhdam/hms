@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types'
 import { compose, setPropTypes, onlyUpdateForPropTypes, withStateHandlers, defaultProps } from 'recompose'
-import TextBox from './TextBox';
+import CssModuleNameTag from 'utils/CssModuleNameTag'
+import styles from './styles.scss'
+
+const cssModules = new CssModuleNameTag(styles)
 
 export default compose(
   onlyUpdateForPropTypes,
@@ -45,4 +48,34 @@ export default compose(
       },
     }
   ),
-)(TextBox)
+)(function TextBox({
+  caption,
+  value,
+  placeHolder,
+  disabled,
+  required,
+  maxLength,
+  onTextChanged,
+  onTextCleared,
+  onChanged,
+  children,
+  ...restProps
+}) {
+  return (
+    <div className={cssModules`root`} required={required} {...restProps}>
+      <label htmlFor="input">{caption}</label>
+      <div>
+        {children}
+        <input
+          type="text"
+          disabled={disabled}
+          maxLength={maxLength}
+          value={value}
+          placeholder={placeHolder}
+          onChange={onTextChanged}
+        />
+        <span part="clear" onClick={onTextCleared}>X</span>
+      </div>
+    </div>
+  );
+})
